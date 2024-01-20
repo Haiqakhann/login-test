@@ -1,0 +1,250 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red255\green255\blue255;\red0\green0\blue0;\red100\green107\blue134;\red0\green0\blue128;\red255\green0\blue0;}
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\cf1\highlight2\f0\fs22\lang9 nodejs basics.\cf0\highlight0  \par
+1. \par
+node.js is used to provide runtime environment for js execution\par
+3. \par
+nodejs perform asynchronous operations using promises and async await. \par
+\cf1\highlight2 advanced js\cf0\highlight0\par
+1.\par
+ var is global or functional scope. it can redeclare and reinitialize as well it also provide hoisting \par
+for ex:\par
+var a = 2\par
+a=3\par
+\{\par
+console.log(a)   \cf3\tab\cf1\highlight4 output:2\cf3\highlight0\par
+\cf0\}\par
+//hoisting example\par
+console.log(b)\tab\tab\cf1\highlight4 output : undeclared \cf0\highlight0\par
+var b=2\par
+let is scope variable means it can only access in the scope it is defined. it cant be redeclare in the same scope. it dont provide hoisting\par
+for ex:\par
+console.log(a)\tab\tab\cf1\highlight5 error: cant use before innitialization\cf0\highlight0\par
+let a = 2\par
+let a= 2\tab\tab\cf1\highlight5 error:cant be redeclare\cf0\highlight0\par
+\{\par
+let a =2\par
+a=3\par
+console.log(a)\tab\tab\cf1\highlight4 outptut:3\par
+\cf0\highlight0\}\par
+console.log(a)\tab\tab\cf1\highlight4 output:2\cf0\highlight0\par
+const is also scope variable but the differece between let and const is const cant be redeclare as well as reinitialize. const also dont provide hoisting\par
+console.log(a)\tab\tab\cf1\highlight5 error: cant use before innitialization\cf0\highlight0\par
+const a = 4\par
+const a= 2\tab\tab\cf1\highlight5 error:cant be redeclare\cf0\highlight0\par
+\{\par
+const a =2\par
+a=3\tab\tab\tab\cf1\highlight5 error:cant be reinitialize\cf0\highlight0\par
+console.log(a)\tab\tab\cf1\highlight4 outptut:2\cf0\highlight0\par
+\}\par
+console.log(a)\tab\tab\cf1\highlight4 output:4\cf0\highlight0\par
+2.\par
+closure means a function is bind together with its lexical environment means that a child function can access variables define in its parents even without it passing as and argument.\par
+for ex:\par
+function a(a)\{\par
+\tab function b(b)\{\par
+\tab\tab function c(c)\{\par
+\tab\tab\tab return a+b+c\par
+\tab\tab\}\tab\par
+\tab\tab return c\par
+\tab\}\par
+\tab return b\par
+\}\par
+console.log(a(1)(2)(2))\tab\cf1\highlight4 output: 5\cf0\highlight0\par
+3. \par
+undefined is that we declare the variable but doesnot initialize it. null is when the variable is empty or doesnot have any value\par
+for example:\par
+var a = prompt("enter any number")\par
+and if we cancel the prompt then a = null\par
+console.log(b)\tab\tab\cf1\highlight4 output : undeclared\cf0\highlight0  \par
+var b=2\par
+4. this keyword is use to call the variables  of current context\par
+for ex;\par
+let obj = \{\par
+name :"haiqa"\par
+age:23\par
+bio:\{\par
+\tab function()\{\par
+\tab\tab return `$\{this.name\} is$\{this.age\} years old`\par
+\tab\}\par
+\}\par
+\}\par
+here this.name and this.age refers to the property of the the obj that calls bio method\par
+\par
+\cf1\highlight2 ES6 Features\par
+\cf0\highlight0 1.\par
+let is scope variable means it can only access in the scope it is defined. it cant be redeclare in the same scope. it dont provide hoisting\par
+for ex:\par
+console.log(a)\tab\tab\cf1\highlight5 error: cant use before innitialization\cf0\highlight0\par
+let a = 2\par
+let a= 2\tab\tab\cf1\highlight5 error:cant be redeclare\cf0\highlight0\par
+\{\par
+let a =2\par
+a=3\par
+console.log(a)\tab\tab\cf1\highlight4 outptut:3\cf0\highlight0\par
+\}\par
+console.log(a)\tab\tab\cf1\highlight4 output:2\cf0\highlight0\par
+const is also scope variable but the differece between let and const is const cant be redeclare as well as reinitialize. const also dont provide hoisting\par
+console.log(a)\tab\tab\cf1\highlight5 error: cant use before innitialization\par
+\cf0\highlight0 const a = 4\par
+const a= 2\tab\tab\cf1\highlight5 error:cant be redeclare\cf0\highlight0\par
+\{\par
+const a =2\par
+a=3\tab\tab\tab\cf1\highlight5 error:cant be reinitialize\cf0\highlight0\par
+console.log(a)\tab\tab\cf1\highlight4 outptut:2\cf0\highlight0\par
+\}\par
+console.log(a)\tab\tab\cf1\highlight4 output:4\cf0\highlight0\par
+2. \par
+arrow function helps to use function as a variable and it helps to reduce the size and time complexity of program\par
+for ex:\par
+const sum = (x,y)=>return x+y\par
+now sum will be treated as js variable.\par
+3. template literal $\{\} makes it alot easy to use variables with string or to concatenate strings \par
+for ex:\par
+using string concatenation:\par
+function bio(name,age)\{\par
+\tab\tab return name +"  is "+ age+ " years old"\par
+\tab\}\par
+using template literals:\par
+function bio(name,age)\{\par
+\tab\tab return `$\{name\} is$\{age\} years old`\par
+\tab\}\par
+\cf1\highlight2 Promises and Destructuring\par
+\cf0\highlight0 1. \par
+promises is an object that can be used for eventuall completion of async operation.\par
+for ex:\par
+const pr = new Promise((resolve,reject)=>\{\par
+\tab const response  = fetch (url)\par
+\tab if(response.ok) resolve(response)\par
+\tab else reject(''fetch request failed)\par
+\})\par
+pr.then(res=> console.log(response.json())).catch(err=>console.log(err))\par
+since fetch is asyn func and we dont know how much time it will take for completion so warpping it using promise will provide the assurity that this response will execute regardless of the result and then we can use the result using then and err using catch in case of rejection\par
+2. \par
+destructuring allow us to break array or object into variable easily\par
+foe ex:\par
+var arr =[1,2,3,4,5,6]\par
+var obj = \{name:haiqa",age:23\}\par
+tradiation method\par
+var arr =[1,2,3,4,5,6]\par
+var a= arr[0] \par
+var b= arr[1]\par
+var c= arr[c]\par
+console.log(a,b,c)\tab\cf1\highlight4 output:1,2,3\cf0\highlight0\par
+var name = obj.name\par
+var age =obj.age\par
+console.log(name,age)\tab\tab\cf1\highlight4 output:haiqa,age\cf0\highlight0\par
+destructuring\par
+[a,b,c] =arr\par
+console.log(a,b,c)\tab\cf1\highlight4 output:1,2,3\cf0\highlight0\par
+\{name,age\}=obj\par
+console.log(name,age)\tab\tab\cf1\highlight4 output:haiqa,age\cf0\highlight0\par
+\par
+\cf1\highlight2 Prototype and ES6 Classes \cf0\highlight0\par
+1. \par
+prototype chain is use to pass any method or function to another object and it provideinheritance such that a child of any obj create using constructor function can use that method and its called prototypal inheritance.\par
+for ex:\par
+function User(name,pass)\{\par
+this.name=name\par
+this.pass =pass\par
+return name\par
+\}\par
+User.Prototype.username = function ()\{\par
+return this.name\par
+\}\par
+now create obj using User\par
+const user1 = new User("haiqa","123")\par
+now access function username using user1 obj\par
+console.log(user1.username())\tab\tab\cf1\highlight4 output:haiqa\par
+\cf0\highlight0 2. \par
+classes is use to create obj of same properties. without classes it will be hell to create different obj of same properties as it required lot of repeatition. classes also allows child class to inherit properties and method of its parent child\par
+foe ex:\par
+without classes:\par
+user1=\{\par
+name :"haiqa"\par
+age:23\par
+\}\par
+user2=\{\par
+name :"kdas"\par
+age:45\par
+\}\par
+with claswses\par
+class User\{\par
+constructor(name,pass)\{\par
+\tab this.name =name\par
+\tab this.pass=pass\par
+\}\par
+username()\{\par
+\tab return name\par
+\}\par
+\}\par
+const user1 = new User("haiqa",23)\par
+const user2 = new User("haiqa",25)\par
+class Admin extends Users\{\par
+admin()return `you are not admin`\par
+\}\par
+now inheritance\par
+const user3 =Admin("ali",32)\par
+user3 can use username() function as well\par
+console.llog(user3.username())\tab\cf1\highlight4 output: ali\cf0\highlight0\par
+\par
+ \highlight2\par
+\cf1 Express.js and EJS\cf0  \par
+\highlight0 1. \par
+express js is frame work of node js. we can create web applications with less line of code using express\par
+let app =express()\par
+let port =8000\par
+let cb = ()=>console.log('server working')\par
+app.get(/,(req,res)=>\{\par
+  res.send(''hellooo")\par
+\})\par
+\par
+2. \par
+middleware is any sort of function that can execute between request and response. it can access through app.use()\par
+for ex:\par
+import express from 'express'\par
+let app =express()\par
+let port =8000\par
+let cb = ()=>console.log('server working')\par
+app.set('view engine','ejs')\par
+here express.urlencoded and express.json are builtin middleware used for post request of form data and json data respectively\par
+app.use(express.urlencoded(\{extended:true\}))\par
+app.use(express.json())\par
+app.post('/',(req,res)=>\{\par
+  const username = req.body.username\par
+  const password = req.body.password\par
+  console.log(req.body)\par
+  res.send(`welcome $\{username\}`)\par
+\})\par
+app.listen(port,cb)\par
+here express.json()  and express.urlencoded() is middleware\par
+3.  \par
+index.js\par
+import express from 'express'\par
+let app =express()\par
+let port =8000\par
+let cb = ()=>console.log('server working')\par
+app.set('view engine','ejs')\par
+app.get('/about',(req,res)=>\{\par
+  let obj = ['haiqa','khan']\par
+  res.render('pages/about',\{people:obj\})\par
+\})\par
+\par
+about.ejs\par
+<!DOCTYPE html>\par
+<html lang="en">\par
+<head>\par
+    <meta charset="UTF-8">\par
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\par
+    <title>ABOUT</title>\par
+</head>\par
+<body>\par
+    <h1>about us</h1>\par
+    <% people.forEach((element)=> \{ %>\par
+        <li><%= element %></li>\par
+        <% \}) %>\par
+</body>\par
+</html>\par
+}
+ 
